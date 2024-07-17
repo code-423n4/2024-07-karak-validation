@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "black-wolf",
+  "risk": "2",
+  "title": " no check for zero address  - possibility of losing tokens",
+  "issueId": 15,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/15"
+}
