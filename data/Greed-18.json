@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Greed",
+  "risk": "2",
+  "title": "Wrong gas estimation calculation in `HookLib`",
+  "issueId": 18,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/18"
+}
