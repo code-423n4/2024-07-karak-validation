@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "trachev",
+  "risk": "3",
+  "title": "Vaults that use tokens that revert on transfers to the zero address cannot be slashed",
+  "issueId": 39,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/39"
+}
