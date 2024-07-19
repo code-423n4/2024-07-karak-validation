@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Prestige",
+  "risk": "2",
+  "title": "Depositing And Minting Does Not Take Into Account Fee-On-Transfer Tokens",
+  "issueId": 40,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/40"
+}
