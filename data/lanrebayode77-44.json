@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "lanrebayode77",
+  "risk": "2",
+  "title": "finalizedSlashing() should also include whenFunctionNotPaused(Constants.PAUSE_CORE_CANCEL_SLASHING) ",
+  "issueId": 44,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/44"
+}
