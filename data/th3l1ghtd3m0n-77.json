@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "th3l1ghtd3m0n",
+  "risk": "2",
+  "title": "ERC4626 does not work with fee-on-transfer tokens",
+  "issueId": 77,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/77"
+}
