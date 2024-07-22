@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Fitro",
+  "risk": "2",
+  "title": "SlashingHandler.sol :: handleSlashing() some tokens cannot be slashed because they revert when attempting to send an amount to the address(0).",
+  "issueId": 69,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/69"
+}
