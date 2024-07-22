@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Stormreckson",
+  "risk": "2",
+  "title": "DSS can't slash in the future if `maxSlashablePercentWad` was set to 1 initially(which means no slashing)",
+  "issueId": 72,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/72"
+}
