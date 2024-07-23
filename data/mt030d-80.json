@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "mt030d",
+  "risk": "2",
+  "title": "A global setting of `hookCallGasLimit` restricts the flexibility of DSS's hook implementation",
+  "issueId": 80,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/80"
+}
