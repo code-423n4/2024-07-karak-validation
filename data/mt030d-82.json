@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "mt030d",
+  "risk": "2",
+  "title": "Lack of slippage control in `Vault.mint()`",
+  "issueId": 82,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/82"
+}
