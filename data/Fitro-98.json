@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Fitro",
+  "risk": "2",
+  "title": "Vault.sol :: deposit() ERC4626 does not work with fee-on-transfer tokens resulting in the minting of more shares than intended.",
+  "issueId": 98,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/98"
+}
