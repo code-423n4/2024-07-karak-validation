@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "mt030d",
+  "risk": "2",
+  "title": "`Core.registerDSS` is not pausable",
+  "issueId": 81,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/81"
+}
