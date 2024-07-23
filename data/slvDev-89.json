@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "slvDev",
+  "risk": "2",
+  "title": "The first depositor can force the second to get 0 shares, causing the second to lose their funds, creating a gap for any first depositor, and forcing wrong share calculation for other",
+  "issueId": 89,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/89"
+}
