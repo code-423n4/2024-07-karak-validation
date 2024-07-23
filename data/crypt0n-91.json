@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "crypt0n",
+  "risk": "2",
+  "title": "`revertIfNoBalanceChange` will revert even the balance has been changed when NativeVault being slashed",
+  "issueId": 91,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/91"
+}
