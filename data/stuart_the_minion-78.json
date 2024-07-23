@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "stuart_the_minion",
+  "risk": "3",
+  "title": "`withdrawableCreditedNodeETH` value of Native Node is wrongly updated",
+  "issueId": 78,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/78"
+}
