@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "mt030d",
+  "risk": "2",
+  "title": "`SlashingHandler.handleSlashing` fails with tokens that revert when transferred to the zero address",
+  "issueId": 85,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/85"
+}
