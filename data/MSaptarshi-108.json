@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "MSaptarshi",
+  "risk": "2",
+  "title": "Tokens that revert on transfers to address(0)",
+  "issueId": 108,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/108"
+}
