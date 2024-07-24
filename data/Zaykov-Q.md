@@ -39,3 +39,19 @@ if (newBalanceWei != prevBalanceWei) {
     balanceDeltaWei = int256(newBalanceWei) - int256(prevBalanceWei);
     emit ValidatorBalanceChanged(nodeOwner, nodeAddress, validatorIndex, timestamp, newBalanceWei);
 }
+
+## [C-01] Add name constant inside `BeaconProofsLib.sol`
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/BeaconProofsLib.sol#L65
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/BeaconProofsLib.sol#L98
+
+The library currently uses the magic number 32 to represent the size of a hash in multiple places. This can make the code harder to read and maintain, as the significance of the number 32 is not immediately clear. By defining a named constant for the hash size, the code will be more readable, maintainable, and less prone to errors when changes are needed.
+
+```
+        if (validatorProof.length != 32 * ((VALIDATOR_HEIGHT + 1) + BEACON_STATE_HEIGHT)) {
+```
+```
+        if (proof.proof.length != 32 * (BALANCE_HEIGHT + 1)) revert InvalidBalanceProof();
+```
+### Recommended Fix:
+Define a name constant for better understanding.
