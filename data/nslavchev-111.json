@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "nslavchev",
+  "risk": "2",
+  "title": "If address(0) is passed to validateVaultConfigs the code will not revert",
+  "issueId": 111,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/111"
+}
