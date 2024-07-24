@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "bronze_pickaxe",
+  "risk": "2",
+  "title": "Slashing possible even though the Vaults are paused",
+  "issueId": 102,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/102"
+}
