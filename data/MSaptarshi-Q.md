@@ -10,8 +10,7 @@ This makes the readability and storage cost complex due to different way of stor
 ## Recommendation
 Have the casting for both the starting time same
 
-# [QA-2] Unnecessary check for address(0) in nodeOwner
-## Impact
+# [QA-2] Misguided check for address(0) in nodeOwner
 Any addresses deployed by [create2 will not be address(0)](https://github.com/Vectorized/solady/blob/1f43cc8005cc3b3c8361dd7dbdd2cdeaf0f99e66/src/utils/LibClone.sol#L1517)
 So having this check makes the line unnecessary increasing the storage cost for the codebase
 https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L530
