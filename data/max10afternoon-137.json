@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "max10afternoon",
+  "risk": "2",
+  "title": "NativeVault: Users can queue a withdraw request, that can be finalized only by them. Making it possible to fron run slashing event with a withdraw",
+  "issueId": 137,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/137"
+}
