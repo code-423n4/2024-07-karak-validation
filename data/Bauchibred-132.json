@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Bauchibred",
+  "risk": "2",
+  "title": " `Vault.sol` redemption route is broken & not compliant with 4626",
+  "issueId": 132,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/132"
+}
