@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Bauchibred",
+  "risk": "2",
+  "title": "Some tokens can never get withdrawn due to the current implementation of `NativeNode#withdraw()`",
+  "issueId": 139,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/139"
+}
