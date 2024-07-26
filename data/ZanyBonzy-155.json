@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "ZanyBonzy",
+  "risk": "2",
+  "title": "Slashing may sometimes fail for stETH vaults due to its 1-2 wei corner problem",
+  "issueId": 155,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/155"
+}
