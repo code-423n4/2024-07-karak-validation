@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "0xHelium",
+  "risk": "2",
+  "title": "Slashing can be DoSed for fee on transfer Tokens",
+  "issueId": 142,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/142"
+}
