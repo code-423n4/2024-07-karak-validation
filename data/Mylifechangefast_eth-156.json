@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Mylifechangefast_eth",
+  "risk": "2",
+  "title": "Incorrect return value in *getNextWithdrawNonce()*",
+  "issueId": 156,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/156"
+}
