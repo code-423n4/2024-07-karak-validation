@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Satyam_Sharma",
+  "risk": "2",
+  "title": "validateWithdrawalCredentials function always be dosed, whenever called after validateSnapshotProofs.",
+  "issueId": 144,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/144"
+}
