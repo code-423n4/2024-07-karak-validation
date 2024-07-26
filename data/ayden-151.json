@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "ayden",
+  "risk": "2",
+  "title": "callHookIfInterfaceImplemented should revert when call failed or interface isn't implemented",
+  "issueId": 151,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/151"
+}
