@@ -1,4 +1,22 @@
-# [QA-1] Misguided check for allowed tokens
+# [QA-1] Rebasing token/FOT may cause problematic for slashing
+While initiating a [slashing for a particular vault](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L202)
+it burns the required amount by checking
+`transferAmount = Math.min(totalAssets(), totalAssetsToSlash);` which burns the assets by the following way
+```
+   function handleSlashing(IERC20 token, uint256 amount) external {
+        if (amount == 0) revert ZeroAmount();
+        if (!_config().supportedAssets[token]) revert UnsupportedAsset();
+
+        SafeTransferLib.safeTransferFrom(address(token), msg.sender, address(this), amount);
+        // Below is where custom logic for each asset lives
+        SafeTransferLib.safeTransfer(address(token), address(0), amount);
+    }
+```
+The problem here is if while initiating the slashing the `totalAssets` > `totalassetstoslash` so amount slashed =`totalassetstoslash` , but if rebasing occurs for a rebasing token,  which might result in the amount to slash decrease by the rebased amount. This might result in the full amount not getting slashed
+## Recommendation
+Query the balance before and after the transfer to address(0) for burning
+
+# [QA-2] Misguided check for allowed tokens
 The project checks for tokens allowed for slashing in [here](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L288)
 ```
 function isAssetAllowlisted(address asset) public view returns (bool) {
