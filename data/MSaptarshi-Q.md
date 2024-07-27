@@ -63,4 +63,4 @@ Any addresses deployed by [create2 will not be address(0)](https://github.com/Ve
 So having this check makes the line unnecessary increasing the storage cost for the codebase
 https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L530
 ## Recommendation
-The check can be remodified by just checking if the particuolar nodeAddress is present in all the nodeAddress deployed by the create2 BeaconProxy 
+The check can be remodified by just checking if the particular nodeAddress is present in all the nodeAddress deployed by the create2 BeaconProxy 
