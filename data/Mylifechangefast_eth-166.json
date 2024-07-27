@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Mylifechangefast_eth",
+  "risk": "2",
+  "title": "Stale data snapshot present when snapshot starts:: making expired snapshot not detected when expired",
+  "issueId": 166,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/166"
+}
