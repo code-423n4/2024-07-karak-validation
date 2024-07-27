@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Alhakista",
+  "risk": "3",
+  "title": "Lack of Delegated Assets Check in unregisterOperatorFromDSS Function",
+  "issueId": 168,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/168"
+}
