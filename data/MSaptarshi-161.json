@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "MSaptarshi",
+  "risk": "2",
+  "title": "Slashing might not be done fully if the token is a rebase token",
+  "issueId": 161,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/161"
+}
