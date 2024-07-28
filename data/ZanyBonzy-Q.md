@@ -353,3 +353,26 @@ To protect from malicious frontrunning, Vault.sol has two `deposit` functions, i
     }
 ```
 ***
+
+
+## 11. No function to remove a assets from allowlist
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L85
+
+### Impact
+
+Core.sol holds an `allowlistAssets` function which allows the owner/manager to allow assets that can later be used to create vaults. However, there are no functions to remove these assets from the allowlist if the asset gets compromised, or the protocol is no longer supporting the asset. 
+
+```solidity
+    function allowlistAssets(address[] memory assets, address[] memory slashingHandlers)
+        external
+        onlyRolesOrOwner(Constants.MANAGER_ROLE)
+    {
+        _self().allowlistAssets(assets, slashingHandlers);
+        emit AllowlistedAssets(assets);
+    }
+```
+### Recommended Mitigation Steps
+Recommend introducing a function to remove assets from allowlists.
