@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Inspecktor",
+  "risk": "2",
+  "title": "The user can call the registerOperatorToDSS() function when the contract is paused by governance",
+  "issueId": 194,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/194"
+}
