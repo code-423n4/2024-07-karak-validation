@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "ayden",
+  "risk": "2",
+  "title": "Users can potentially avoid the slashing mechanism by transferring their shares to the vault",
+  "issueId": 191,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/191"
+}
