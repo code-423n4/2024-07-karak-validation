@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Inspecktor",
+  "risk": "3",
+  "title": "The user will lose their funds if they try to withdraw shares > maxRedeem",
+  "issueId": 193,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/193"
+}
