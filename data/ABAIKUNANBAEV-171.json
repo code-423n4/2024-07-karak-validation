@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "ABAIKUNANBAEV",
+  "risk": "2",
+  "title": "Operator can stake vault in 2 different DSS with high slash percentages and DoS one of the DSS",
+  "issueId": 171,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/171"
+}
