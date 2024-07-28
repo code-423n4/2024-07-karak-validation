@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Sabit",
+  "risk": "3",
+  "title": "Unrestricted minting vulnerability in ERC4626 Vault Implementation",
+  "issueId": 181,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/181"
+}
