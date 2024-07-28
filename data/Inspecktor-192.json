@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Inspecktor",
+  "risk": "3",
+  "title": "An attacker can register a DSS and set a maxSlashablePercentageWad that does not belong to him, change the maxSlashablePercentageWad of an existing DSS, to stake/unstake vault any DSS, register any operator address as a DSS, unregister an address from a DSS, impose the veto committee to cancel a queued slashing",
+  "issueId": 192,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/192"
+}
