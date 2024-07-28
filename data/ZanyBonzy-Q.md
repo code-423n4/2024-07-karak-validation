@@ -376,3 +376,38 @@ Core.sol holds an `allowlistAssets` function which allows the owner/manager to a
 ```
 ### Recommended Mitigation Steps
 Recommend introducing a function to remove assets from allowlists.
+
+***
+
+## 12. The two `deposit` functions should use the same pause mapping
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L81
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L97
+
+### Impact
+
+The two `deposit` functions, one with slippage control, the other without, have different pause mappings.
+Since they both have the same functionality, it makes more sense to control them with the same pause mapping, otherwise, pausing one can lead to users bypassing through the other.
+
+```solidity
+
+   function deposit(uint256 assets, address to)
+        public
+        override(ERC4626, IVault)
+        whenFunctionNotPaused(Constants.PAUSE_VAULT_DEPOSIT)
+        nonReentrant
+```
+```solidity
+    function deposit(uint256 assets, address to, uint256 minSharesOut)
+        external
+        nonReentrant
+        whenFunctionNotPaused(Constants.PAUSE_VAULT_DEPOSIT_SLIPPAGE)
+        returns (uint256 shares)
+    {
+```
+### Recommended Mitigation Steps
+
+Recommend using the same pause map for the two functions.
