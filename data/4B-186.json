@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "4B",
+  "risk": "2",
+  "title": "Caller can be deducted more assets than withdrawn in `NativeVault`",
+  "issueId": 186,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/186"
+}
