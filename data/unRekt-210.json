@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "unRekt",
+  "risk": "2",
+  "title": "Check for `minSharesOut` is done after assets are already deposited, breaks functionality.",
+  "issueId": 210,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/210"
+}
