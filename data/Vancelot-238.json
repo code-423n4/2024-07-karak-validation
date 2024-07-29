@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Vancelot",
+  "risk": "3",
+  "title": "The `NativeNode` contract is unable to receive any Ether",
+  "issueId": 238,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/238"
+}
