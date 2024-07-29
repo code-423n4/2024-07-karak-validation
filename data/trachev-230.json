@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "trachev",
+  "risk": "2",
+  "title": "Validators can prevent the slash store from receiving slashed funds",
+  "issueId": 230,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/230"
+}
