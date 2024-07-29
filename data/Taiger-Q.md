@@ -49,3 +49,28 @@ Remix IDE
 ## Recommended Mitigation Steps
 
 Limit the value of the GasValues ​​variable to avoid large or small values ​​that may cause the contract logic to fail to execute normally.
+
+
+# Undetermined addresses are not the same
+
+## Impact
+
+https://github.com/code-423n4/2024-07-karak/blob/main/src/NativeVault.sol#L62
+
+Failure to verify that the address is unique when the NativeVault contract is initialized may lead to potential confusion of permissions and security risks. For example, if the `manager` and `slashStore` addresses are the same, too many permissions and functions may be granted to a single address, increasing the risk of malicious behavior. This may lead to abuse of management permissions and even threaten the funds in the contract.
+
+## Proof of Concept
+
+Vulnerability in initialize function: manager, slashStore, nodeImplementation may have the same address.
+
+```solidity
+if (manager == address(0) || slashStore == address(0) || nodeImplementation == address(0)) revert ZeroAddress();
+```
+
+## Tools Used
+
+Remix IDE
+
+## Recommended Mitigation Steps
+
+Add additional checks to ensure `manager`, `slashStore` and `nodeImplementation` addresses are unique.
