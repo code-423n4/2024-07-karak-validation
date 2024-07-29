@@ -55,3 +55,22 @@ The library currently uses the magic number 32 to represent the size of a hash i
 ```
 ### Recommended Fix:
 Define a name constant for better understanding.
+
+## [C-01] Function `allowlistVaultImpl` and `isDSSRegistered` in CoreLib.sol are not used 
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/CoreLib.sol#L153-L155
+
+https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/CoreLib.sol#L161-L163
+
+The `allowlistVaultImpl` and `isDSSRegistered` inside CoreLib.sol are never used. If they are not supposed to be used in the contract it is better to be removed.
+
+```
+function allowlistVaultImpl(Storage storage self, address implementation) internal {
+        self.allowlistedVaultImpl[implementation] = true;
+    }
+```
+```
+ function isDSSRegistered(Storage storage self, IDSS dss) internal view returns (bool) {
+        return self.dssMaxSlashablePercentageWad[dss] != 0;
+    }
+```
