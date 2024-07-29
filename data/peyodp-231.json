@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "peyodp",
+  "risk": "2",
+  "title": "Possible DOS (out-of-gas) on loops.",
+  "issueId": 231,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/231"
+}
