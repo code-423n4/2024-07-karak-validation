@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "unRekt",
+  "risk": "2",
+  "title": "No checks present in,`startRedeem` function to ensure `beneficiary` actually has the amount of `shares` entered, can lead to silent failure of the function",
+  "issueId": 208,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/208"
+}
