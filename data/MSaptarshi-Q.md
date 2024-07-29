@@ -1,4 +1,4 @@
-# [QA-1] Rebasing token/FOT may cause problematic for slashing
+# [QA-1] Rebasing token/FOT may be problematic for slashing
 While initiating a [slashing for a particular vault](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L202)
 it burns the required amount by checking
 `transferAmount = Math.min(totalAssets(), totalAssetsToSlash);` which burns the assets by the following way
@@ -23,7 +23,7 @@ function isAssetAllowlisted(address asset) public view returns (bool) {
         return _self().assetSlashingHandlers[asset] != address(0);
     }
 ```
-But this check is not appropriate since a token which is not allowed in the vault in [here](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/VaultLib.sol#L11)
+But this check is not appropriate since a token which is not allowed in the vault in [here](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/entities/VaultLib.sol#L11), may get allowlisted in [here](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L43)
 ```
 function asset() public view override(ERC4626, IKarakBaseVault) returns (address) {
         return _config().asset;
@@ -64,3 +64,16 @@ So having this check makes the line unnecessary increasing the storage cost for 
 https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L530
 ## Recommendation
 The check can be remodified by just checking if the particular nodeAddress is present in all the nodeAddress deployed by the create2 BeaconProxy 
+
+# [QA-6] `isSmartContract` is not a adequate check for checking contract existance
+While registering the DSS the contract checks if the DSS is a smartcontract, by check the [codesize](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/utils/CommonUtils.sol#L48)
+```
+function registerDSS(uint256 maxSlashablePercentageWad) external {
+        IDSS dss = IDSS(msg.sender);
+        if (!address(dss).isSmartContract()) revert NotSmartContract();
+        _self().setDSSMaxSlashablePercentageWad(dss, maxSlashablePercentageWad);
+        emit DSSRegistered(msg.sender, maxSlashablePercentageWad);
+    }
+```
+However, this check can be passed even though input is a smart contract if
+Function is called in the constructor, since during construction code length is 0.Smart contract that has not been deployed yet can be used. The CREATE2 opcode can be used to deterministically calculate the address of a smart contract before it is created. This means that the user can bypass this check by calling this function before deploying the contract.
