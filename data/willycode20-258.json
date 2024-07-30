@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "willycode20",
+  "risk": "2",
+  "title": " Missing proper modifier for the functtion [Core::registerOperatorToDSS] allowing anyone to be able to call this function, registering an Operator against their will",
+  "issueId": 258,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/258"
+}
