@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "20centclub",
+  "risk": "2",
+  "title": "The operator can front-run the slashing and avoid it",
+  "issueId": 257,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/257"
+}
