@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "MrValioBg",
+  "risk": "3",
+  "title": "Actual restaked amount by an Operator can become stale, which could lead to unfairness",
+  "issueId": 309,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/309"
+}
