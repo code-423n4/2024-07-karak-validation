@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Mike_Bello90",
+  "risk": "2",
+  "title": "The `activeValidatorCount` variable should be also updated when the validator is force to exit the Beacon Chain",
+  "issueId": 302,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/302"
+}
