@@ -1,4 +1,4 @@
-# 1. Implementation of Balance Check for Withdrawals in SlashStore Contract
+# Implementation of Balance Check for Withdrawals in SlashStore Contract
 
 ## Description
 
