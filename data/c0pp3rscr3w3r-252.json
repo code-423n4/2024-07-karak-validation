@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "c0pp3rscr3w3r",
+  "risk": "2",
+  "title": "Wrong way of burning makes slashAssets revert in Vault.sol for most ERC20 assets",
+  "issueId": 252,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/252"
+}
