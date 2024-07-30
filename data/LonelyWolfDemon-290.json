@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "LonelyWolfDemon",
+  "risk": "2",
+  "title": "Inconsistent Asset Redemption Amounts Due to Variable totalAssets in Start and Finish Redeem Functions",
+  "issueId": 290,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/290"
+}
