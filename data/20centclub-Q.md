@@ -9,7 +9,7 @@ https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f787
 ```solidity
     function withdraw(address to, uint256 weiAmount) external nonReentrant onlyOwner {
         Address.sendValue(payable(to), weiAmount);
-        emit NodeETHWithdrawn(address(this), to, weiAmount); //@audit checks to prevent the owner from withdrawing more Ether than the contract holds
+        emit NodeETHWithdrawn(address(this), to, weiAmount);
     }
 ```
 
