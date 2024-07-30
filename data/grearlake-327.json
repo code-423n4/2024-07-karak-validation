@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "grearlake",
+  "risk": "2",
+  "title": "can not slash token that revert on transfer to zero address",
+  "issueId": 327,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/327"
+}
