@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Fulum",
+  "risk": "2",
+  "title": "`deployVaults()`/`allowlistAssets()` does not confirm that deterministic tokens are deployed and therefore tokens can be stolen.",
+  "issueId": 261,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/261"
+}
