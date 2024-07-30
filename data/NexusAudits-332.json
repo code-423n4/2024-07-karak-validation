@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "NexusAudits",
+  "risk": "2",
+  "title": "Potential Overflow in Bit Shift Amount Calculation",
+  "issueId": 332,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/332"
+}
