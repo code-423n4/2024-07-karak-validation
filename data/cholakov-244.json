@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "cholakov",
+  "risk": "2",
+  "title": "`withdrawalMap[withdrawalKey]` will not get resetted after executing the withdrawal in `NativeVault::finishWithdrawal()`",
+  "issueId": 244,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/244"
+}
