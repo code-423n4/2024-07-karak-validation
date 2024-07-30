@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "dhank",
+  "risk": "2",
+  "title": "handleSlashing not considering fees on transfer when the amount is burned.",
+  "issueId": 360,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/360"
+}
