@@ -87,6 +87,24 @@ System is using ``` operatorState.vaults.length() == Constants.MAX_VAULTS_PER_OP
 
 In the `deployNode()` function, a new node is deployed using a deterministic ERC1967 beacon proxy. While the function includes an initialization step for the newly deployed node, it does not perform any checks to ensure that the deployemnt was successful. This could lead to issues if the node fails to deploy correctly, potentially causing vulnerabilities. We are checking this while deploying the vaults. Add the extra check while deploying the Node also.
 
+## Code 
+
+```solidity
+function deployNode(Storage storage self, VaultLib.Config storage config, address owner)
+        internal
+        returns (address)
+    {
+        bytes32 salt = keccak256(abi.encodePacked(config.operator, owner));
+
+        INativeNode newNode = INativeNode(address(LibClone.deployDeterministicERC1967BeaconProxy(address(this), salt)));
+        newNode.initialize(address(this), owner); //@audit - while deploying the vault we are checking that it must be deployed correctly but why not checking for node deployment?
+
+        emit NodeDeployed(msg.sender, address(newNode), self.nodeImpl);
+        return address(newNode);
+    }
+
+```
+
 ## Recommendation
 
 `createVault()` has the check ```
