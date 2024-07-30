@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Fulum",
+  "risk": "3",
+  "title": "The operator can create a `NativeVault` that can be silently unslashable.",
+  "issueId": 267,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/267"
+}
