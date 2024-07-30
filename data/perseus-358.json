@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "perseus",
+  "risk": "3",
+  "title": "Manager EOA may steal assets meant for slashing ",
+  "issueId": 358,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/358"
+}
