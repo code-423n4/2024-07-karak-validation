@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Atharv",
+  "risk": "2",
+  "title": "Improper Validation can lead to smart contract wallets/multisig to register as DSS",
+  "issueId": 299,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/299"
+}
