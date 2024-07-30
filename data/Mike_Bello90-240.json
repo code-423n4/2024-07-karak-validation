@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Mike_Bello90",
+  "risk": "2",
+  "title": "Wrong Gas Calculation in the Hook Library can Cause Valid Function Calls to Revert",
+  "issueId": 240,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/240"
+}
