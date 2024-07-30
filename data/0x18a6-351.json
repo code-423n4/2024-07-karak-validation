@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "0x18a6",
+  "risk": "2",
+  "title": "`isContract` is not a reliable way to determine if a address is a EOA or contract",
+  "issueId": 351,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/351"
+}
