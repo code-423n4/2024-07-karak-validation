@@ -1,4 +1,4 @@
-1. Missing DSS Unregistration Function in Core.sol
+# 1. Missing DSS Unregistration Function in Core.sol
 
 ## Description
 
@@ -29,7 +29,7 @@ function unSetDSSMaxSlashablePercentageWad(
 
 ```
 
-2.Missing Validation in Vault Staking/Unstaking Process in Core.sol
+# 2.Missing Validation in Vault Staking/Unstaking Process in Core.sol
 
 ## Impact
 The lack of a check in the `requestUpdateVaultStakeInDSS()` function to verify whether a vault is already staked in a DSS can lead to inefficient operations and potential errors. Without this check, an operator might mistakenly initiate an unstaking request for a vault that is not actually staked in the DSS, causing unnecessary waiting periods.
@@ -47,17 +47,6 @@ Manual Review
 
 To address this issue, add a verification step in the requestUpdateVaultStakeInDSS() function. If the toStake parameter is false (indicating an unstaking request), the function should check if the vault is currently staked in the specified DSS. If the vault is not staked, the function should revert the transaction to prevent unnecessary operations and waiting periods. This ensures that only valid unstaking requests are processed
 
-
-In Core.sol we have requestUpdateVaultStakeInDSS() function to update the vault stake in particular stake whether the vault to add to the DSS or remove the vault stake from that DSS.
-
-In the unstaking request of vault from the DSS it is not checking whether that vault is staked in the DSS or not. To remove from the staked vault DSS list first it should be present but this check is not present and Operator has to wait for 9 days and after that `finalizeUpdateVaultStakeInDSS()` is called and it will not check any case for that and in the end 
-```
-operatorState.vaultStakedInDssMap[dss].remove(vault);
-```
-which will return false. 
-
-## Recommendation 
-we should add a check while calling requestUpdateVaultStakeInDSS() toStake is false then check whether the vault is staked in that DSS. if not revert their
 
 ```diff
 function requestUpdateVaultStakeInDSS(Operator.StakeUpdateRequest memory vaultStakeUpdateRequest)
@@ -82,7 +71,7 @@ function requestUpdateVaultStakeInDSS(Operator.StakeUpdateRequest memory vaultSt
 ``` 
 
 
-3. Missing Proper Validation in `addVault()` Function in Operator.sol
+# 3. Missing Proper Validation in `addVault()` Function in Operator.sol
 
 ## Impact
 The addVault() function in the Core.sol contract is used to add a vault to the operator's state. However, it lacks proper validation for the maximum capacity of vaults. 
@@ -91,3 +80,19 @@ The addVault() function in the Core.sol contract is used to add a vault to the o
 
 System is using ``` operatorState.vaults.length() == Constants.MAX_VAULTS_PER_OPERATOR``` But instead should use ``` if (operatorState.vaults.length() >= Constants.MAX_VAULTS_PER_OPERATOR) revert MaxVaultCapacityReached();
 ``` for more safety.
+
+# 4. No checking for create2 deployed contract for creating Node correctly
+
+## Impact
+
+In the `deployNode()` function, a new node is deployed using a deterministic ERC1967 beacon proxy. While the function includes an initialization step for the newly deployed node, it does not perform any checks to ensure that the deployemnt was successful. This could lead to issues if the node fails to deploy correctly, potentially causing vulnerabilities. We are checking this while deploying the vaults. Add the extra check while deploying the Node also.
+
+## Recommendation
+
+`createVault()` has the check ```
+if (expectedNewVaultAddr != address(vault)) {
+            revert VaultCreationFailedAddrMismatch(expectedNewVaultAddr, address(vault));
+        }
+```
+Add the similar check for the `deployNode()` Function.
+
