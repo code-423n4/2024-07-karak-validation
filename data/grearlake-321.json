@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "grearlake",
+  "risk": "2",
+  "title": "When a vault is slash while waiting for withdrawal, vault might not have enough token to withdraw, lead to token stuck",
+  "issueId": 321,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/321"
+}
