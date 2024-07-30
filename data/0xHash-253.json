@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "0xHash",
+  "risk": "2",
+  "title": "Some tokens (e.g. USDC) that are returned when trying to send to address (0) are not supported by `SlashingHandler.sol#handleSlashing()`.",
+  "issueId": 253,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/253"
+}
