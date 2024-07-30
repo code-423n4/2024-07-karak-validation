@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Topmark",
+  "risk": "2",
+  "title": "Invalid Time Validation due to strict inequality symbol",
+  "issueId": 289,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/289"
+}
