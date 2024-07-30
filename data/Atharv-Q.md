@@ -1,0 +1,93 @@
+1. Missing DSS Unregistration Function in Core.sol
+
+## Description
+
+The Core.sol contract currently lacks a function that allows DSS (Decentralized Staking Systems) to unregister. This absence makes it challenging for operators to determine if a DSS is active, especially since the rewards are not tracked on-chain.
+
+## Recommendation
+
+Include a function that enables DSS to unregister from the system. This will help operators identify inactive DSS more easily and manage their participation accordingly.
+
+```solidity
+function unregisterDSS(uint256 maxSlashablePercentageWad) external {
+        IDSS dss = IDSS(msg.sender);
+        if (!address(dss).isSmartContract()) revert NotSmartContract();
+        if (getDssMaxSlashablePercentageWad(dss) == 0 ) revert NotDSS();
+        _self().unSetDSSMaxSlashablePercentageWad(dss);
+        emit DSSRegistered(msg.sender, maxSlashablePercentageWad);
+    }
+
+function unSetDSSMaxSlashablePercentageWad(
+        CoreLib.Storage storage self,
+        IDSS dss,
+        uint256 dssMaxSlashablePercentageWad
+    ) public {
+        uint256 currentSlashablePercentageWad = self.dssMaxSlashablePercentageWad[dss];
+        if (currentSlashablePercentageWad == 0) revert DSSIsNotPresent();
+        self.dssMaxSlashablePercentageWad[dss] = 0;
+    }
+
+```
+
+2.Missing Validation in Vault Staking/Unstaking Process in Core.sol
+
+## Impact
+The lack of a check in the `requestUpdateVaultStakeInDSS()` function to verify whether a vault is already staked in a DSS can lead to inefficient operations and potential errors. Without this check, an operator might mistakenly initiate an unstaking request for a vault that is not actually staked in the DSS, causing unnecessary waiting periods.
+
+This oversight could result in delays in the system, as the operator must wait the full unstaking period (9 days) before the `finalizeUpdateVaultStakeInDSS()` function is called. Which then basically just deletes the `pendingStakeUpdate`
+
+## Proof of Concept
+
+[Code of requestUpdateVaultStakeInDSS()](https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L130)
+
+## Tools Used
+Manual Review
+
+## Recommended Mitigation Steps
+
+To address this issue, add a verification step in the requestUpdateVaultStakeInDSS() function. If the toStake parameter is false (indicating an unstaking request), the function should check if the vault is currently staked in the specified DSS. If the vault is not staked, the function should revert the transaction to prevent unnecessary operations and waiting periods. This ensures that only valid unstaking requests are processed
+
+
+In Core.sol we have requestUpdateVaultStakeInDSS() function to update the vault stake in particular stake whether the vault to add to the DSS or remove the vault stake from that DSS.
+
+In the unstaking request of vault from the DSS it is not checking whether that vault is staked in the DSS or not. To remove from the staked vault DSS list first it should be present but this check is not present and Operator has to wait for 9 days and after that `finalizeUpdateVaultStakeInDSS()` is called and it will not check any case for that and in the end 
+```
+operatorState.vaultStakedInDssMap[dss].remove(vault);
+```
+which will return false. 
+
+## Recommendation 
+we should add a check while calling requestUpdateVaultStakeInDSS() toStake is false then check whether the vault is staked in that DSS. if not revert their
+
+```diff
+function requestUpdateVaultStakeInDSS(Operator.StakeUpdateRequest memory vaultStakeUpdateRequest)
+        external
+        nonReentrant
+        whenFunctionNotPaused(Constants.PAUSE_CORE_REQUEST_STAKE_UPDATE)
+        returns (Operator.QueuedStakeUpdate memory updatedStake)
+    {
+        address operator = msg.sender;
+        CoreLib.Storage storage self = _self();
+        self.checkIfOperatorIsRegInRegDSS(operator, vaultStakeUpdateRequest.dss);
++       if(vaultStakeUpdateRequest.toStake){
++         //Check if the vault is already staked in the DSS
++         ...
++       }else{
++         //Check if the vault is not staked in the DSS
++         ...
++       }
+        updatedStake = self.requestUpdateVaultStakeInDSS(vaultStakeUpdateRequest, self.nonce++, operator);
+        emit RequestedStakeUpdate(updatedStake);
+    }
+``` 
+
+
+3. Missing Proper Validation in `addVault()` Function in Operator.sol
+
+## Impact
+The addVault() function in the Core.sol contract is used to add a vault to the operator's state. However, it lacks proper validation for the maximum capacity of vaults. 
+
+## Recommendation 
+
+System is using ``` operatorState.vaults.length() == Constants.MAX_VAULTS_PER_OPERATOR``` But instead should use ``` if (operatorState.vaults.length() >= Constants.MAX_VAULTS_PER_OPERATOR) revert MaxVaultCapacityReached();
+``` for more safety.
