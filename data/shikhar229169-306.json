@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "shikhar229169",
+  "risk": "2",
+  "title": "`Operator::validateAndUpdateVaultStakeInDSS` passes incorrect data to `finishUpdateStakeHook` hook function on the DSS, leading to incorrect accounting or errors on DSS",
+  "issueId": 306,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/306"
+}
