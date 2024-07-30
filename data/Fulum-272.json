@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Fulum",
+  "risk": "3",
+  "title": "`NativeNode` can't receive the Eth from the beacon chain validators, make the Native Restaking not working",
+  "issueId": 272,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/272"
+}
