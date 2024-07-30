@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "EmanHerawy",
+  "risk": "3",
+  "title": " Calling `validateSnapshotProofs(...)` Will Always Revert if One Validator is Inactive",
+  "issueId": 343,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/343"
+}
