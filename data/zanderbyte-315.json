@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "zanderbyte",
+  "risk": "2",
+  "title": " Missing return value check for `callHookIfInterfaceImplemented` for multiple functions ",
+  "issueId": 315,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/315"
+}
