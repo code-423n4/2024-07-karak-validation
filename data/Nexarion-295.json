@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "Nexarion",
+  "risk": "3",
+  "title": "Merkle Tree Function Vulnerable to Non-Power-of-Two Inputs",
+  "issueId": 295,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/295"
+}
