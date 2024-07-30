@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "MrValioBg",
+  "risk": "2",
+  "title": "Gas checks for calling a hook are wrong, as execution could continue without enough gas.",
+  "issueId": 307,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/307"
+}
