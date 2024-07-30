@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "0xLeveler",
+  "risk": "2",
+  "title": "DSS can stake in operator vaults they run and front-run their own slashing to extract value.",
+  "issueId": 273,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/273"
+}
