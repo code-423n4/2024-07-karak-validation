@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "dhank",
+  "risk": "2",
+  "title": "finishUpdateStakeHook() is expecting the operators address as a parameter but instead a msg.sender is passed",
+  "issueId": 354,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/354"
+}
