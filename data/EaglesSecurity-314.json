@@ -1,0 +1,8 @@
+{
+  "contest": 404,
+  "handle": "EaglesSecurity",
+  "risk": "2",
+  "title": "Users could lose funds during redeem procedure in Vault.sol",
+  "issueId": 314,
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/314"
+}
