@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Request update stake can be repeated for a vault to a DSS even when the vault is staked already",
   "issueId": 348,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/348"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/348",
+  "validatedIssueId": 61,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/61"
 }
