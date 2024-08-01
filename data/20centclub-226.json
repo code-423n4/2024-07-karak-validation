@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Invalid slash store validation makes it possible for operator to dodge slashing",
   "issueId": 226,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/226"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/226",
+  "validatedIssueId": 75,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/75"
 }
