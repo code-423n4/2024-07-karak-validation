@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "User can request update of the vault stake and then unregister before finalization",
   "issueId": 170,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/170"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/170",
+  "validatedIssueId": 80,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/80"
 }
