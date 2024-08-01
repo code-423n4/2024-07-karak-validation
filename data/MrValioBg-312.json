@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "MAX_SLASHING_PERCENT_WAD can be exceeded if a NativeVault's balance is unstable",
   "issueId": 312,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/312"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/312",
+  "validatedIssueId": 66,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/66"
 }
