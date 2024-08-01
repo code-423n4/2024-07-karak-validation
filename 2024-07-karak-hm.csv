@@ -1,0 +1,360 @@
+issue,title,primary finding,validator comment,status,root cause (URL),size
+validation-269,"Fix Incorrect Smart Contract Detection in registerDSS Function result in ""DOS""",,"It's checking dss, NOT the caller.",Unsatisfactory,,21
+validation-247,`NativeNode` does not have a receive function,,Yield from Beacon is sent via self destruct,Unsatisfactory,,23
+validation-214,Operators can steal slashed funds,validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,23
+validation-201,Unsafe casting in `NativeVaultLib`,,Low QA as it will just revert,Unsatisfactory,,23
+validation-188,initializer could be frontrun,,Analyzer: [L-16] Upgradeable contract not initialized,Unsatisfactory,,23
+validation-94,slashAssets in NativeVault considers stakes queued in withdrawals,,It's just a commented misnomer. state.validateQueuedWithdrawal(withdrawalKey) has it taken care of,Unsatisfactory,,24
+validation-285,Operators can stake vaults without being registered in the DSS,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,25
+validation-182,initializer modifier will not work,,"Pauser is Initializable. Othewise, the contract won't compile",Unsatisfactory,,25
+validation-196,"It is only possible to update the Vault implementation from Standard to a specific implementation, otherwise not",,It's set to true via allowlistVaultImpl() by default,Unsatisfactory,,26
+validation-251,Unblockable vault implementations,,It's set to true via allowlistVaultImpl() by default,Unsatisfactory,,27
+validation-184,newNodeImplementation in changeNodeImplementation can affect critical functions,,It's an admin function that's trusted,Unsatisfactory,,27
+validation-318,using ownable instead of ownable upgradeable can malfunction onlyowner functions,,Informational and low impact,Unsatisfactory,,28
+validation-358,Manager EOA may steal assets meant for slashing ,,Manager is trusted,Unsatisfactory,,29
+validation-314,Users could lose funds during redeem procedure in Vault.sol,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,29
+validation-90,User may lose their shares during redeem in `Vault`,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,29
+validation-204,Mallisious actor can deploy vaults until operator's number of vaults for reaches the maximum.,,It's an internal function,Unsatisfactory,,30
+validation-187,Incorrect conversion from uint256 to int256 In the NativeVaultLib.sol::validateSnapshotProof,,Low QA as it will just revert,Unsatisfactory,,31
+validation-183,Initializable is not inherited by `NativeVault`,,"Pauser is Initializable. Othewise, the contract won't compile",Unsatisfactory,,31
+findings-39,The `Core` contract doesn't implement `IDSS.cancelUpdateStakeHook()`.,validation-277,Partial credit should be given as it does not address the impact of dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,31
+validation-205,Validators can avoid getting slashed by exiting their position on the Beacon Chain,,Incorrect assumption on the slashing logic,Unsatisfactory,,32
+validation-82,Lack of slippage control in `Vault.mint()`,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used",Unsatisfactory,,32
+validation-81,`Core.registerDSS` is not pausable,,Low QA and insufficient proof on the impact,Unsatisfactory,,32
+validation-53,`_startSnapshot()` can revert with an underflow,,nodeBalanceWei will at worst be 0 if node.withdrawableCreditedNodeETH = node.nodeAddress.balance is executed in _transferToSlashStore(),Unsatisfactory,,32
+validation-25,Predictable Salt in `createVault` Function,,Low QA on Create2,Unsatisfactory,,32
+validation-273,DSS can stake in operator vaults they run and front-run their own slashing to extract value.,,DSS should be trusted,Unsatisfactory,,33
+validation-109,"""Possibility of losing funds due to failure to check for address `0`""",,Low QA on address(0) check. It's an admin call after all,Unsatisfactory,,33
+validation-85,`SlashingHandler.handleSlashing` fails with tokens that revert when transferred to the zero address,,M-4 from Renascence Labs (Core),Unsatisfactory,,33
+validation-84,The `Vault` is incompatible with fee-on-transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,33
+validation-37,Unrestricted slashing cancellation allows arbitrary veto at any time by the veto committee,, SLASHING VETO COMMITTEE is trusted,Unsatisfactory,,33
+validation-36,Incorrect operator address passed to `IDSS::finishUpdateStakeHook` allows unauthorized stake updates,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,33
+validation-332,Potential Overflow in Bit Shift Amount Calculation,,"Unneeded cast since (validatorIndex % 4) is 0, 1, 2 or 3",Unsatisfactory,,34
+validation-349,Vulnerability in Vault Redemption Process Allows Malicious Operators to Reduce Slashing Penalties,validation-349,Slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,35
+validation-331,Incompatibility with ERC20 tokens which revert on transfer to address(0),,M-4 from Renascence Labs (Core),Unsatisfactory,,35
+validation-301,User can avoid slashing by effectively withdrawing their ETH before,,Incorrect assumption on the intended slashing logic,Unsatisfactory,,35
+validation-299,Improper Validation can lead to smart contract wallets/multisig to register as DSS,,"It's checking dss, NOT the caller.",Unsatisfactory,,35
+validation-271,Potential Incompatibility with Certain ERC20 Token Implementations in `handleSlashing` Function,,M-4 from Renascence Labs (Core),Unsatisfactory,,35
+validation-209,The `if (totalAssetsToSlash > self.totalAssets)` check of `NativeVault::slashAssets` function can empty asset pool if wrong amount is entered even by accident.,,Low QA on admin mistake ,Unsatisfactory,,35
+validation-111,If address(0) is passed to validateVaultConfigs the code will not revert,,"(implementation != address(0) && !isVaultImplAllowlisted(self, implementation)) isn't meant catering to address(0) check",Unsatisfactory,,35
+validation-242,`Vault` initialization is impossible if symbol is non-string,,Won't revert as it's being matched to struct Config,Unsatisfactory,,36
+validation-208,"No checks present in,`startRedeem` function to ensure `beneficiary` actually has the amount of `shares` entered, can lead to silent failure of the function",,msg.sender will bear for it,Unsatisfactory,,36
+validation-248,Vaults are vulnerable from the famous ERC4626 inflation attack,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,37
+validation-217,Lack of Mechanism to Remove Unsupported Tokens from SlashingHandler,,Intended design as already confirmed by the sponsor in Discord,Unsatisfactory,,37
+validation-141,[M-1] Lack of access control on `SlashingHandler::handleSlashing` function allows users to accidentally burn their tokens,,It's msg.sender linked. Caller be cautious,Unsatisfactory,,37
+validation-46,A malicious Operator could avoid the slashing penalty when they behave maliciously towards a DSS,,Seemingly OOS. QA at best,Unsatisfactory,,37
+findings-6,Lack of Implementation of Functions in Core Contract Limits Owner Control over NativeVault ,,QA as owner is the default admin,Unsatisfactory,,37
+validation-336,slashing can prevent users from withdrawing ,,It's msg.sender restricted,Unsatisfactory,,38
+validation-319,Permanent loss of user funds if `SLASHING_VETO_WINDOW` expires during pausing,,Commonly known issue. Intended design,Unsatisfactory,,38
+validation-263,"There is no way to delete an allowed vault implementation, which can broke the protocol if an allowed vault is malicious.",,It's set to true via allowlistVaultImpl() by default,Unsatisfactory,,38
+validation-9,`isSmartContract()` is not a reliable way to determine if a address is a EOA or contract,,QA and informational,Unsatisfactory,,38
+validation-297,Asymmetric upgrade between `nodeImpl` and `slashStore` ,,QA and informational,Unsatisfactory,,39
+validation-283,Staker loss of funds due to frontrun Attack in Vault `Deposit` Function Leading to Fund Loss,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,39
+validation-213,User can deny transfer of Slashed Assets from his nativenode,,Insufficient proof. _updateSnapshot() is atomically handled always,Unsatisfactory,,39
+findings-44,Failure to deploy a node due to an existing account at expected address,,Low QA on Create2,Unsatisfactory,,39
+findings-34,The `handleSlashing()` function always reverts when handling `fee-on-transfer` tokens.,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,39
+validation-360,handleSlashing not considering fees on transfer when the amount is burned.,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,40
+validation-215,Lack of Slippage Protection in Mint Function,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used",Unsatisfactory,,40
+validation-202,`changeNodeImplementation` doesnt check if  `newNodeImplementation` is a contract,,"It's checked using assembly, size := extcodesize(newNodeImplementation)",Unsatisfactory,,40
+validation-3,Address(0) Vulnerability,,Low QA on address(0) check.,Unsatisfactory,,40
+validation-359,Incorrect Use of LibClone.predictDeterministicAddressERC1967BeaconProxy in Smart Contract,,Low QA on Create2,Unsatisfactory,,41
+validation-355,DSS is  still allowed to slash after MIN_WITHDRAWAL_DELAY  is passed,, SLASHING VETO COMMITTEE is trusted,Unsatisfactory,,41
+validation-326,Inflation Attack is possible on vault,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,41
+validation-249,Attacker can DOS a new user in Native Restaking,validation-119,Inadequate measure to stem front-running DOS,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,41
+validation-244,`withdrawalMap[withdrawalKey]` will not get resetted after executing the withdrawal in `NativeVault::finishWithdrawal()`,,Incorrect assumption on delete,Unsatisfactory,,41
+validation-237,initializer could be frontrun,,Analyzer: [L-16] Upgradeable contract not initialized,Unsatisfactory,,41
+validation-83,`SlashingHandler.handleSlashing` fails with fee-on-transfer token,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,41
+validation-347,Operators can finalize their vault staking to DSS even after unregistering from them due to missing registered check for operator on DSS,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,42
+validation-324,The operator can still access `Core::finalizeUpdateVaultStakeInDSS()` even after unregistering from the DSS.,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,42
+validation-287,Slashing or deposits will not work with fee-on-transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,42
+validation-122,User with `MANAGER_ROLE` is able to call `NativeNode::changeNodeImplementation`,,Manager is trusted,Unsatisfactory,,42
+validation-353, no  checks to find whether any  vault is pending for finailsed staking in a DAA while unregistering the DSS,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,43
+validation-325,`finalizeSlashing` will face a Denial of Service due to a revert situation arising in `SlashingHandler::handleSlashing`,,Seemingly OOS. QA at best,Unsatisfactory,,43
+validation-304,a malicious user can submit a invalid snapshot,validation-119,Inadequate measure to stem front-running DOS,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,43
+validation-268,The manager of a `NativeVault` can prevent a user to withdraw their funds during a certain time.,validation-267,Trusted maneger can be bricked via extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,43
+validation-230,Validators can prevent the slash store from receiving slashed funds,,Incorrect assumption on the slashing logic (Same root cause),Unsatisfactory,,43
+validation-212,NativeVault's `MANAGER_ROLE` is untrusted and allows malicious operators to steal all funds from the native nodes,validation-267,Trusted maneger can be bricked via extraData (Same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,43
+validation-210,"Check for `minSharesOut` is done after assets are already deposited, breaks functionality.",,It's atomic,Unsatisfactory,,43
+validation-45,`validateAndUpdateVaultStakeInDSS` calls `finishUpdateStakeHook` with the wrong address,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,43
+validation-13,h-02 owner can execute this function to withdraw any amount of funds arabgodx,,Intended design. Owner is trusted,Unsatisfactory,,43
+findings-43,Failure to create a vault due to an existing account at expected address,,Low QA on Create2,Unsatisfactory,,43
+validation-17,h-04 Withdrawal Function Allow Arbitrary Fund Transfers,,Intended design. Owner is trusted,Unsatisfactory,,44
+validation-236,Undefined _beforeWithdraw method causes contract rollback,,_beforeWithdraw() is in the parental solady 4626 (meant to be overridden),Unsatisfactory,,45
+validation-227,User's potential rewards can be reduced by a malicious attacker,,Incorrect assumption on the slashing logic,Unsatisfactory,,45
+validation-14,h-03 Vulnerable Admin/Owner Methods Without Emitting Events or Implementing Timelocks arabgodx,,Low QA on missing event and timelock,Unsatisfactory,,45
+findings-42,Breaks invariant: Only DSSs an operator is registered with can slash said operator,,Opposing to #41,Unsatisfactory,,45
+validation-354,finishUpdateStakeHook() is expecting the operators address as a parameter but instead a msg.sender is passed,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,46
+validation-219,Error in Slashing calculation causes users to lose double the intended amount,,Incorrect assumption on the slashing logic,Unsatisfactory,,46
+validation-139,Some tokens can never get withdrawn due to the current implementation of `NativeNode#withdraw()`,,Intended only for Beacon sending ETH here via self-destruct,Unsatisfactory,,46
+validation-19,Operators can stake a vault more than once to a single DSS,validation-277,Partial credit should be given as it does not address the impact of dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,46
+findings-41,Operator can avoid slashing by pre-scheduling unstake request,validation-349,Slash dodging through timing manipulation (same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,46
+validation-343, Calling `validateSnapshotProofs(...)` Will Always Revert if Any Validator is Inactive,,Insufficient proof. _updateSnapshot() is atomically handled always,Unsatisfactory,,47
+validation-309,"Actual restaked amount by an Operator can become stale, which could lead to unfairness",,Seemingly OOS on DSS reward distribution. QA at best,Unsatisfactory,,47
+validation-300,`_getParentBlockRoot` not compliant with EIP-4788 integration guidelines,,"abi.decode(result, (bytes32)) will have everything taken care of",Unsatisfactory,,47
+validation-190,Calling validateSnapshotProofs with different length of balanceProofs will not update node info any more.,,Insufficient proof how it can go negative. Intended to revert regardless,Unsatisfactory,,47
+validation-189,unsafe casting in `NativeVault::_updateSnapshot()`,,Low QA as it will just revert,Unsatisfactory,,47
+validation-159,Lack of __gap Variable,,Analyzer: [L-15] Upgradeable contract is missing a __gap[50] storage variable to allow for new storage variables in later versions,Unsatisfactory,,47
+validation-35,Missing access control in `Core::finalizeUpdateVaultStakeInDSS` allows unauthorized stake updates,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,47
+validation-305,isContract could DOS registerDss() for specific DSS,,Low QA and informational. Does not apply here,Unsatisfactory,,48
+validation-123,Passing Incorrect `operator` Parameter when calling `dss.finishUpdateStakeHook`,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,48
+validation-291,Misleading Hook Call Logic Due to Incorrect Negation of toStake Parameter,,Intended design on the negation,Unsatisfactory,,49
+validation-243,Implementation of Deadline for Deposit and Mint Functions to Prevent Slippage Exploits,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used. Increase gas if need be",Unsatisfactory,,49
+validation-231,Possible DOS (out-of-gas) on loops.,,validatorFieldsProofs is caller controlled,Unsatisfactory,,49
+validation-88,`NativeNode` cannot accept ETH which breaks whole functionality,,Yield from Beacon is sent via self destruct,Unsatisfactory,,49
+findings-26,"Vault staking request to a DSS cannot be canceled, putting user funds at risk in the case of a malicios DSS",,Intended design. Operator to stake with caution,Unsatisfactory,,49
+validation-352,DSS is still registered to the operator even though the interfaces are not implemented in the DSS or the low level call failed.,,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,50
+validation-333,Incorrect Bit Shift Direction in Balance Extraction,,Indequate proof of impact alleging the flaw on an intended design,Unsatisfactory,,50
+validation-308,Depositors can be tricked into supplying more assets to a vault than intended,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,50
+findings-35,A risk of losing funds exists when depositing just before slashing.,findings-15,Fresh deposits succumbing to pending slashes,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L52,50
+validation-276,Improper Time Check in `cancelSlashing` Allows Post-Veto Window Cancellations,, SLASHING VETO COMMITTEE is trusted,Unsatisfactory,,51
+validation-200,Improper return value of create2 return value,,"Low QA on Create2. revert(0x1c, 0x04) is there",Unsatisfactory,,51
+validation-49,`Operator::validateAndUpdateVaultStakeInDSS()` forwards arbitrary `msg.sender` address to `finishUpdateStakeHook()` instead of actual operator,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,51
+findings-28,A Malicious DSS can easily bypass the slashing limits and slash all the Assets in a Vault ,validation-349,Partial credit as it addresses a lesser impact of slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,51
+findings-15,Delayed Slashing Window and Lack of Transparency for Pending Slashes Could Lead to Loss of Funds,findings-15,Fresh deposits succumbing to pending slashes,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L52,51
+validation-346,Loss of funds due to unchecked slippage in balance updates,,Impractical implementing slippage here,Unsatisfactory,,52
+validation-234,Any user can process the slashed ETH by calling the _startSnapshot method and transfer it to the slashed storage,,Intended design as already commented in function NatSpec,Unsatisfactory,,52
+validation-225,`HookLib` gas validation is incorrect,,Deliberately inflated for gasleft(),Unsatisfactory,,52
+validation-328,ignoring the fail condition of request slashing and finalize slashing methods might prevent time sensitive requests to fail being dealt with,,Intended design. Changing it would break,Unsatisfactory,,53
+validation-327,can not slash token that revert on transfer to zero address,,M-4 from Renascence Labs (Core),Unsatisfactory,,53
+validation-292,If slashingHandler for ETH is changed in the Core.sol it will be impossible to slash any of the already deployed NativeVaults.,validation-267,Partial credit should be given as it does not address the missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,53
+validation-241,Missing increment for `node.activeValidatorCount` in `NativeVault::validateWithdrawalCredentials()`,,"It's updated through NativeVaultLib, self.validateWithdrawalCredentials",Unsatisfactory,,53
+validation-77,ERC4626 does not work with fee-on-transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,53
+validation-12,h-01 arbitrary changes for vault implementation vulnerability arabgodx,,Low QA on missing event and timelock,Unsatisfactory,,53
+findings-5,"Operator can set custom manager, slashStore and nodeImplementation when deploying NativeVault",validation-267,Trusted maneger can be bricked via extraData (Same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,53
+validation-342,Users may lose assets through withdrawals if the withdrawable Assets are less than the assets the user wishes to withdraw,,Intended design,Unsatisfactory,,54
+validation-290,Inconsistent Asset Redemption Amounts Due to Variable totalAssets in Start and Finish Redeem Functions,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,54
+validation-155,Slashing may sometimes fail for stETH vaults due to its 1-2 wei corner problem,validation-155,Ongoing issue with stETH transfer,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L56,54
+validation-39,Vaults that use tokens that revert on transfers to the zero address cannot be slashed,,M-4 from Renascence Labs (Core),Unsatisfactory,,54
+findings-49,Changing the slashingHandler for NativeVaults will DoS slashing,validation-267,Partial credit should be given as it does not address the missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,54
+validation-348,Request update stake can be repeated for a vault to a DSS even when the vault is staked already,validation-277,Partial credit should be given as it does not address the impact of dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,55
+validation-306,"`Operator::validateAndUpdateVaultStakeInDSS` passes incorrect data to `finishUpdateStakeHook` hook function on the DSS, leading to incorrect accounting or errors on DSS",,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,55
+validation-133,`ignoreFailure` being set to true in some instances would lead to broken logics across protocol,,Intended design. Changing it would break,Unsatisfactory,,55
+findings-11,Share and asset calculations are not compatible with fee-on-transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,55
+validation-232,Anyone can initialize without any restrictions,,Analyzer: [L-7] Initializers could be front-run,Unsatisfactory,,56
+validation-179,manipulated call,,OOS on OperatorContract.sol,Unsatisfactory,,56
+validation-56,Anyone can finish redeem and unstake user funds without they want it,,Save user's gas on finishRedeem() then,Unsatisfactory,,56
+validation-350,The `cancelSlashing` function should reset all the variables modified by the `requestSlashing` function,,delete self.slashingRequests[slashRoot] is in cancelSlashing(),Unsatisfactory,,57
+validation-322,Enabled by default rebasing rewards from USDB/WETH will be lost upon deployment to blast,validation-322,Yield loss on Blast,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L118,57
+validation-302,The `activeValidatorCount` variable should be also updated when the validator is force to exit the Beacon Chain,,Simply call validateSnapshotProof() to decrement it then ,Unsatisfactory,,57
+validation-238,The `NativeNode` contract is unable to receive any Ether,,Yield from Beacon is sent via self destruct,Unsatisfactory,,57
+findings-8,Blocking of Default Vault Implementation in changeImplementationForVault Function,,Intended design. Admin should be aware of that,Unsatisfactory,,57
+validation-103,Two step withdrawal can lead to funds lost,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,58
+validation-44,finalizedSlashing() should also include whenFunctionNotPaused(Constants.PAUSE_CORE_CANCEL_SLASHING) ,,Intended design. Changing it would break,Unsatisfactory,,58
+validation-344,ERC4626 Vault does not work with fee-on-transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,59
+validation-207,`Vault.sol` does not support fee on transfer tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,59
+validation-173,The slashed assets cannot be the actually slashed amount,,Intended design,Unsatisfactory,,59
+findings-40,Malicious attacker can disguise as operator via finishUpdateStakeHook,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,59
+validation-296,validateAndUpdateVaultStakeInDSS() passes msg.sender to the callback's data instead of the operator,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,60
+validation-274,finalizeUpdateVaultStakeInDSS() can be called after an operator has unregistered from the DSS,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,60
+validation-167,nodeOwners that deposited assets after slashing will account for the slashed assets,,Intended design,Unsatisfactory,,60
+validation-59,"If one slashing fails, all the slashes will fail",,Seemingly OOS. QA at best,Unsatisfactory,,60
+findings-20,DSS cannot force jailed operator to unallocate from such DSS,,Seemingly OOS,Unsatisfactory,,60
+validation-260,Slashing will be DoS'ed for vaults with underlying tokens reverting on transfer to the zero address.,,M-4 from Renascence Labs (Core),Unsatisfactory,,61
+validation-239,SupportsInterface call doesn't comply with the ERC165 standard.,,Low QA. Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,61
+validation-102,Slashing possible even though the Vaults are paused,,Commonly known issue. Intended design,Unsatisfactory,,61
+validation-18,Wrong gas estimation calculation in `HookLib`,,Deliberately inflated for gasleft(),Unsatisfactory,,61
+validation-223,Manager of Core can be the 0 address.,,Low QA on address(0) check,Unsatisfactory,,62
+validation-164,core contract not implement changeNodeImplementation ,,Low QA on an intended design. Both contracts are independent of each other,Unsatisfactory,,62
+validation-138,[H-1] Lack of checks allows a `DSS` contract to register as `Operator` to itself,,DSS should be trusted,Unsatisfactory,,62
+validation-118,Operator can evade slashing by using unregistered slashHandler address ,validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,62
+validation-91,`revertIfNoBalanceChange` will revert even the balance has been changed when NativeVault being slashed,,Circumvented by &&. nodeBalanceWei will at worst be 0 if node.withdrawableCreditedNodeETH = node.nodeAddress.balance is executed in _transferToSlashStore(),Unsatisfactory,,62
+validation-87,Reentrancy Vulnerability in Vault Withdrawal Function,,Infeasible as user will deplete his own shares instead,Unsatisfactory,,62
+validation-66,Incorrect State Update Order in `startWithdrawl` Function,,It's atomic. Gas saving for earlier revert only.,Unsatisfactory,,62
+validation-22,Time Delay in Slashing Mechanism Leads to Potential Inconsistencies in Slashed Amounts,,Incorrect perception on the slashing logic,Unsatisfactory,,62
+validation-252,Wrong way of burning makes slashAssets revert in Vault.sol for most ERC20 assets,,M-4 from Renascence Labs (Core),Unsatisfactory,,63
+validation-218,Anyone can allowlist an asset via `CoreLib`,,Won't be related if calling the lib elsewhere,Unsatisfactory,,63
+validation-79,The slashing functionality will not operate for most ERC20 tokens in default vaults.,,M-4 from Renascence Labs (Core),Unsatisfactory,,63
+validation-57,Operator can bypass slashing by submitting many update vault requests,,Seemingly OOS. QA at best,Unsatisfactory,,63
+findings-12,The SlashingHandler will always fail to handleSlashing for fee-on-transfer and balance-changes-outside-of-transfers tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,63
+validation-254,Lack of Slippage Protection in `mint()` functions of the `Vault` contract,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used",Unsatisfactory,,64
+validation-222,Incorrect Comment Regarding _depositToken Parameter Leading to Potential Misuse,,Low QA on code comment mismatch,Unsatisfactory,,64
+validation-220,"Insufficient timestamp validation in `validateWithdrawalCredentials` will lead to erroneous user balances, allowing validators to steal rewards",,Seemingly OOS,Unsatisfactory,,64
+validation-98,Vault.sol :: deposit() ERC4626 does not work with fee-on-transfer tokens resulting in the minting of more shares than intended.,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,64
+validation-255,It may be returned due to inaccurate gas calculation.,,"That's ment for merkle proof, NOT mint",Unsatisfactory,,65
+validation-203,no gas limits check,,Low QA on admin mistake,Unsatisfactory,,65
+validation-86,Misinterpretation of Validator Balances Due to Bitwise Operation Error in `validateBalance`,,Indequate proof of impact alleging the flaw on an intended design,Unsatisfactory,,65
+findings-50,SlashingHandler::handleSlashing will never work if the token is a fee-on-transfer or rebase token,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,65
+findings-3,A vault's first deposit can be frontrunned to grief deposits below a treshold,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,65
+validation-310,Gas optimisation ,,No reward pool for Gas Optimization,Unsatisfactory,,66
+validation-38,Wrong parameter used in `requestUpdateVaultStakeInDSS',,Intended design on the negation,Unsatisfactory,,66
+validation-149,Slashing will not be possible for tokens that revert on transfer to zero address.,,M-4 from Renascence Labs (Core),Unsatisfactory,,67
+validation-120,Type mismatch in the `validateQueuedWithdrawal` function of `VaultLib.sol` contract,,Low QA. Upcast is fine,Unsatisfactory,,67
+validation-107,Incorrect Merkle Root Computation in `merkleizeSha256` Function due to Array Overwriting,,Insufficient proof alleging the flaw,Unsatisfactory,,67
+validation-142,Slashing can be DoSed for fee on transfer Tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,68
+validation-60,Operator can bypass MIN_STAKE_UPDATE_DELAY by spamming requestUpdateVaultStakeInDSS(),validation-277,Partial credit should be given as it does not address the impact of dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,68
+validation-345,Race Condition between Withdrawals and Slashing ,validation-349,Slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,69
+validation-240,Wrong Gas Calculation in the Hook Library can Cause Valid Function Calls to Revert,,Deliberately inflated for gasleft(),Unsatisfactory,,69
+validation-150,[M-2] `NativeVault::finishWithdrawal` updates state variables after external call and opens up the possibility for cross-function/cross-contracts reentrancy calls.,,nonReentrant already in place,Unsatisfactory,,70
+validation-76,Incorrect address being forwarded to the finishUpdateStakeHook(),,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,70
+findings-38,`validateSnapshotProofs()` with more than one proofs can be DOSed by calling with one proof.,validation-119,Inadequate measure to stem front-running DOS (Similar root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,70
+findings-36,A `DoS` on snapshots due to a rounding error in calculations.,,Unlikely albeit a revert is desired if need be,Unsatisfactory,,70
+validation-253,Some tokens (e.g. USDC) that are returned when trying to send to address (0) are not supported by `SlashingHandler.sol#handleSlashing()`.,,M-4 from Renascence Labs (Core),Unsatisfactory,,71
+validation-295,Merkle Tree Function Vulnerable to Non-Power-of-Two Inputs,,Low QA on validation check on a lib function,Unsatisfactory,,72
+validation-279,Users can be unfairly slashed,,Incorrect assumption on the slashing logic,Unsatisfactory,,72
+validation-162, Missing checks for `address(0)` when assigning values to address state variables,,Low QA on address(0) check,Unsatisfactory,,72
+validation-112,Lack of Storage Gaps in Upgradeable Contracts,,Analyzer: [L-15] Upgradeable contract is missing a __gap[50] storage variable to allow for new storage variables in later versions,Unsatisfactory,,72
+validation-16,Incorrect Recursive Call in `sort` Function Leads to Potential Duplicate Detection Errors,,Devoid of coded POC alleging the flaw,Unsatisfactory,,72
+findings-24,Slashing limit will be bypassed if any staker (finish) redeems their tokens in the `SLASHING_VETO_WINDOW` which will result in other vault's stakers facing more assets slash ,validation-349,Slash dodging through timing manipulation (same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,72
+validation-278,A DSS cannot stop staking of a vault that doesn't meet its conditions,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,73
+validation-266,A DSS can selectively revert and block a non-reverting protocol operations affecting the integration with karak protocol,,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,73
+validation-259,Operators can get away without being slashed,,Seemingly OOS,Unsatisfactory,,73
+validation-151,callHookIfInterfaceImplemented should revert when call failed or interface isn't implemented,,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,73
+validation-317,"Old validator withdraw proof can be used due to missing validation, which would result in inaccurate totalAssets",,Low QA on the need to call validateSnapshotProofs() more often,Unsatisfactory,,74
+validation-62,Improper Validation of _depositToken in Initialization,,Low QA on sanity check,Unsatisfactory,,74
+validation-58,validateAndUpdateVaultStakeInDSS() still forwards incorrect operator address to finishUpdateStakeHook(),,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,74
+validation-10,Report on the assets and slashingHandlers Length Mismatch Issue on `Core.sol`,,It's checked in CoreLib,Unsatisfactory,,74
+validation-117,Operator can become  one of the trusted roles,validation-267,Trusted maneger can be bricked via extraData (Same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,75
+validation-339,Insufficient validation leads to overwriting Existing Slash Handlers,,Low QA on extended sanity checks,Unsatisfactory,,76
+validation-127,Native Node Implementation address should be whitelisted,,Low QA for whitelisting on an admin call,Unsatisfactory,,77
+validation-261,`deployVaults()`/`allowlistAssets()` does not confirm that deterministic tokens are deployed and therefore tokens can be stolen.,,"Assembly: Perform the transfer, reverting upon failure.",Unsatisfactory,,78
+validation-160,Lack of slippage protection can lead to user cost more assets than expected,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used",Unsatisfactory,,78
+findings-33,The `Vault` contract exhibits incorrect behavior when handling `fee-on-transfer` tokens.,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,78
+findings-47,Lack of input validation in deployVaults function can lead to malicious use,,That's only a view function,Unsatisfactory,,79
+findings-46,A user can lose a significative amount of assets because of a lack of slippage protection ,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,79
+validation-340,Precision Loss in Effective Balance Conversion,,Upcast alraedy in good shape,Unsatisfactory,,80
+validation-307,"Gas checks for calling a hook are wrong, as execution could continue without enough gas.",,Deliberately inflated for gasleft(),Unsatisfactory,,81
+validation-235,Malicious operators can avoid having their vaults with default implementation upgraded potentially sidestepping security fixes,,It's set to true via allowlistVaultImpl() by default,Unsatisfactory,,81
+validation-221,Incorrect Pausing Function Implementation Leading to Unintended Unpausing of All Functions,,Commonly known issue. Intended design,Unsatisfactory,,81
+validation-315, Missing return value check for `callHookIfInterfaceImplemented` for multiple functions ,,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,82
+validation-246,Missing check for validator slashed status,,Low QA on optional check,Unsatisfactory,,82
+validation-134,Slashing from the vault would be bricked,,M-4 from Renascence Labs (Core),Unsatisfactory,,82
+validation-70,Vaults with active slashing that are live long enough time can be bricked,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,82
+validation-191,Users can potentially avoid the slashing mechanism by transferring their shares to the vault,,It's just a commented misnomer. state.validateQueuedWithdrawal(withdrawalKey) has it taken care of,Unsatisfactory,,83
+validation-341,Little-Endian Conversion Error on Validator Balance Calculation,,Indequate proof of impact alleging the flaw on an intended design,Unsatisfactory,,85
+validation-78,`withdrawableCreditedNodeETH` value of Native Node is wrongly updated,,Indequate proof alleging the flaw on an intended design,Unsatisfactory,,85
+validation-311,Slashing NativeVault will lead to locked ETH for the users,,Incorrect assumption on the slashing logic,Unsatisfactory,,87
+validation-270,"Fix Incorrect Smart Contract Detection in registerDSS Function result in ""DOS",,"It's checking dss, NOT the caller.",Unsatisfactory,,87
+validation-303,Incorrect Duplicate Detection in CommonUtils Library,,Devoid of coded POC alleging the flaw,Unsatisfactory,,88
+validation-143,NodeOwners can evade DSS slash in NativeVault.,validation-349,Slash dodging through timing manipulation (Similar root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,88
+validation-63,Users that deposit in a Vault that have previously been slashed could have their asset permanently locked up in vault,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,88
+findings-25,Donation to vault will negate slippage control in deposit function,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,88
+validation-338,Lack of Slippage Protection in `finishRedeem` Function,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,89
+validation-186,Caller can be deducted more assets than withdrawn in `NativeVault`,,Intended design. Changing it would brick,Unsatisfactory,,89
+validation-153,DoS Vulnerability in function fetchVaultsQueuedForExit,,Known issue from previous audit,Unsatisfactory,,89
+findings-30,Attackers can conduct a permanent `DoS` on others' snapshots.,validation-119,Inadequate measure to stem front-running DOS (Similar root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,90
+validation-165,Slash DOS in SlashingHandler contract,,Seemingly OOS. QA at best,Unsatisfactory,,91
+validation-140, Low level calls to the DSS could still be passed on when not enough gas is passed which would lead to failures which breaks the assumption,,Inconsequential change on an already inflated gasleft(),Unsatisfactory,,92
+findings-10,Vault is vulnerable to Inflation Attack,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,92
+validation-228,Incorrect Slashing Mechanism Leading to Unintended Penalties for Unaffected Users,,Incorrect assumption on the slashing logic,Unsatisfactory,,93
+validation-131,"NativeVault.sol :: validateExpiredSnapshot() will always revert, making it impossible for users from initiating a new snapshot.",validation-131,Seems valid with the coded POC,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L210-L223,93
+findings-27,Malicios Operator can utilize a malicios DSS and an overleveraged vault to frontrun an honest DSS's slashing request to protect its funds,,DSS should be trusted,Unsatisfactory,,93
+findings-4,Violation of Invariant Allowing DSSs to Slash Unregistered Operators,validation-349,Slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,94
+validation-337,First Depositor Inflation Attack possible in Vaults,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,95
+validation-136,No slippage applied when minting,,"function deposit(uint256 assets, address to, uint256 minSharesOut) may be used",Unsatisfactory,,96
+validation-119,New NodeOwners can be griefed by forcing them to provide proof for an empty snapshot without any shares increase/decrease on their node,validation-119,Inadequate measure to stem front-running DOS,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,97
+validation-198,Legitimate Calls to finalizeSlashing(...) May Fail Due to Absence of Timeframes for VETO_COMMITTEE_ROLE Cancellation,,Intended design. Changing it would break,Unsatisfactory,,99
+validation-335,Front-running Vulnerability in NativeVault Snapshot Process,validation-119,Inadequate measure to stem front-running DOS,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L218-L220,100
+validation-132, `Vault.sol` redemption route is broken & not compliant with 4626,,Shares have been transferred to the contract in startRedeem(),Unsatisfactory,,101
+validation-298,access conttrol policy for secured pausing and unpausing functions,,These are just lib functions,Unsatisfactory,,102
+validation-277,"Operator can skew the state of the `Core` contract and be considered as staked for a DSS, even though the operator is not registered with that DSS on the `Core`.",validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,103
+findings-37,An attacker can impose financial losses on other stakers by validating their validators prior to executing a slash.,,Insufficient proof alleging the flaw,Unsatisfactory,,103
+validation-47,Invalid Initialization of 'initialize' Function in Contract,,Low QA on sanity check,Unsatisfactory,,105
+validation-71,DOSing of NativeVault deployment.,validation-267,Partial credit should be given as it does not address the missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,106
+findings-9,finalizeUpdateVaultStakeInDSS can be called by anyone on unregistered DSS ,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,106
+findings-32,"Even if there is a balance change from the last snapshot, the `startSnapshot()` could still be reverted.",,Insufficient proof alleging the flaw,Unsatisfactory,,107
+validation-154,startSnapShort cannot be called in some cases,,Unrelated to _decimalsOffset(),Unsatisfactory,,108
+validation-312,MAX_SLASHING_PERCENT_WAD can be exceeded if a NativeVault's balance is unstable,validation-349,Slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,110
+validation-281,"The Return Value of the `callHookIfInterfaceImplemented` Function is not Validated, This can Mess up the Core Storage Variables",,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,110
+validation-316,Inflation problem in ERC4626 affects vault where an attacker can frontrun a victim before deposit,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,111
+validation-80,A global setting of `hookCallGasLimit` restricts the flexibility of DSS's hook implementation,,Analyzer: [L-6] External call recipient may consume all transaction gas,Unsatisfactory,,111
+validation-272,"`NativeNode` can't receive the Eth from the beacon chain validators, make the Native Restaking not working",,Yield from Beacon is sent via self destruct,Unsatisfactory,,112
+validation-216,"DSS can deposit assets into the vault by oneself, which can lead to vault users losing more slashed assets",validation-349,Slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,115
+validation-163,The operator can use any arbitrary nodeImplementation and grant themselves the manager role,validation-267,Trusted maneger can be bricked via extraData (Same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,116
+validation-105,"`ExtSloads` Function Returns Empty Array, Preventing `Querier` Contract from Fetching Vaults Queued for Withdrawal",,Insufficient proof alleging the unintialized array,Unsatisfactory,,117
+findings-23,Wrong input parameter passed to DSS hook function - msg.sender instead of operator,,[H-03] from Code4rena Pro League (Core),Unsatisfactory,,118
+validation-258," Missing proper modifier for the functtion [Core::registerOperatorToDSS] allowing anyone to be able to call this function, registering an Operator against their will",,It's msg.sender locked,Unsatisfactory,,119
+validation-106,Remove `bytes32(0)` Elements before Iteration in `fetchVaultsQueuedForExit`,,Low QA on trimming for gas optimization,Unsatisfactory,,120
+validation-262," During NativeVault deployment, insufficient validation of the `extraData` parameter allows for the theft of staker funds and prevention of the vault slashing.",validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,121
+validation-101,NativeVault user cannot withdraw all stakes within 7 days stipulated period due to a startWithdrawal validation.,,Incorrect assumption on the intended slashing logic,Unsatisfactory,,123
+validation-229,Users' redeem can be blocked by the manager/owner and cause an unfair slash,,Commonly known issue while manager/owner should be trusted,Unsatisfactory,,125
+validation-124,The function Core::pause does not fulfill its purpose,,All pausing working as intended,Unsatisfactory,,125
+findings-18,DSS can force operator to pay much more for gas than necessary when calling DSS's hooks,findings-18,Intuitive suggestion on gas saving,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/d19a4de35bcaf31ccec8bccd36e2d26594d05aad/src/entities/CoreLib.sol#L56-L65,126
+validation-250,Double Decrease of totalAssets During Slashing and Snapshot,,Incorrect assumption on the slashing logic,Unsatisfactory,,127
+validation-267,The operator can create a `NativeVault` that can be silently unslashable.,validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,128
+validation-275,Unchecked token transfer in withdraw function,,Low QA on address(0) check of an admin call,Unsatisfactory,,130
+validation-256,The DSS can slash an operator even after they change their vault to be staked to another DSS,,Seemingly OOS. QA at best,Unsatisfactory,,131
+findings-7,Slashing’s will Always Fail In Some Cases,validation-349,Partial credit as it addresses a lesser impact of slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,132
+findings-21,Operator can DOS DSS's `unregistrationHook` function by specifying arbitrary `unregistrationHookData` while not reverting its own `Core.unregisterOperatorFromDSS` function call,findings-21,unregistrationHook flaw,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/53eb78ebda718d752023db4faff4ab1567327db4/src/Core.sol#L113-L124,135
+validation-114,Permanent lock of NodeOwners funds,,Indequate proof alleging the flaw on an intended design,Unsatisfactory,,138
+validation-34,"Operators can finalize vault stake updates even when unregistered from DSS, disrupting DSS slashing ruquests",validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,138
+validation-294,Some Operator contract functions cannot be executed successfully,,Either call failed or interface isn't implemented. Event is emitted after all,Unsatisfactory,,139
+validation-226,Invalid slash store validation makes it possible for operator to dodge slashing,validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,140
+validation-125,NodeOwners lose partial/full remaining stake after NativeVault suffers a slash request,,Indequate proof alleging the flaw on an intended design,Unsatisfactory,,140
+findings-29,Stakers unfairly forfeit their unattributed node balance included in the slashed assets.,findings-29,Unattributed node balance forfeiture,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/NativeVault.sol#L425-L446,140
+findings-31,A snapshot may face a permanent DoS if both a slashing event occurs in the NativeVault and the staker's validator is penalized.,,Seemingly an intended design,Unsatisfactory,,141
+validation-257,The operator can front-run the slashing and avoid it,,Seemingly OOS. QA at best,Unsatisfactory,,144
+validation-113,Permanent DOS of validateSnapshotProofs(),,Indequate proof alleging the flaw on an intended design,Unsatisfactory,,144
+findings-19,Every operator is unexpectedly DOS'ed from staking to a DSS and possible leveraging for at least 9 days,,Intended design. Operator to stake with caution,Unsatisfactory,,144
+validation-68,An Operator can deploy a vault with a controlled slash store to receive slashed Eth from NativeVault ,validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,145
+validation-158,Inflation attack with a profit for attacker is possible,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,146
+validation-146,"operator customizes the slashStore address, it results in slashAssets always reverting",validation-267,Missing crucial validation on manipulable extraData,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L308,152
+validation-224,Potential Manipulation of Staking Rewards and Slash Avoidance in Vault Deployment,,Incorrect assumption on the slashing logic,Unsatisfactory,,156
+findings-17,"When malicious behavior occurs and DSS requests slashing against vault during 2 day period after `SLASHING_WINDOW` of 7 days is passed after staker initiates a withdrawal, token amount to be slashed is calculated to be higher than what it should be",findings-17,Scenario leading to over slashing,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/d19a4de35bcaf31ccec8bccd36e2d26594d05aad/src/entities/SlasherLib.sol#L126-L151,157
+validation-65,Users that deposits after a DSS slash requested can lose funds unjustly,findings-15,Fresh deposits succumbing to pending slashes,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L52,168
+findings-48,Operators can deploy malicious NativeVault via changing extraData params,validation-267,Trusted maneger can be bricked via extraData (Same root cause),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L59-L63,174
+validation-89,"The first depositor can force the second to get 0 shares, causing the second to lose their funds, creating a gap for any first depositor, and forcing wrong share calculation for other",,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,186
+validation-100,Centralization Risk for trusted owners,,Low QA on centralization,Unsatisfactory,,188
+findings-16,Slashed amount of vault's underlying token's underlying asset can be unfairly higher than what DSS should be able to slash when such underlying token is a token that has balance changes outside of transfers,findings-16,Scenario leading to over slashing,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/53eb78ebda718d752023db4faff4ab1567327db4/src/Vault.sol#L193-L205,190
+validation-51,"Slashing the entire balance, will make the vault unusable in the future",,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,191
+validation-323,Native Node Owner Lacks Control Over Validators Added to Their Vault,,Incorrect assumtions. self.ownerToNode[nodeOwner].activeValidatorCount-- available via validateSnapshotProof(),Unsatisfactory,,215
+validation-286,"Discrepancy betweeen expectedNewAddr and actual(vault) will always be a thing since expectedNewAddr is calculated wrongly, therefore creation of vault using `deployVaults` which eventually calls the internal function `createVault` likely to revert.",,Low QA on Create2,Unsatisfactory,,228
+validation-50,Slasher may slash more than intended in %,,Seemingly OOS. QA at best,Unsatisfactory,,229
+validation-137,"NativeVault: Users can queue a withdraw request, that can be finalized only by them. Making it possible to fron run slashing event with a withdraw",,Incorrect assumption on the intended slashing logic,Unsatisfactory,,256
+validation-130,It is possible to bypass validateWithdrawalCredentials,validation-130,Possible sneak through with coded POC,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/NativeVault.sol#L481,271
+validation-129,"Pausing a native's node withdraws, will also pause _startSnapshot for that node's owner",,Commonly known issue on intended design,Unsatisfactory,,276
+validation-288,Incorrect order of operations during a snapshot validation can result in stuck ETH due to an underflow.,,Incorrect assumptions on an intended flow,Unsatisfactory,,287
+validation-199,"Malicious Attacker Can Manipulate Vault Token Ratio, Causing Staker Losses",,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,361
+validation-168,Lack of Delegated Assets Check in unregisterOperatorFromDSS Function,,Low QA on extended checks,Unsatisfactory,,21
+validation-195,Use safeTransfer/safeTransferFrom consistently instead of transfer/transferFrom,,Low QA on safeTransfer,Unsatisfactory,,22
+validation-30,Report on Lack of Operator Verification in deployVaults Function,,Low QA on verification check,Unsatisfactory,,27
+validation-330, Fee on transfer tokens can lead to incorrect amount handleSlashing,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,31
+validation-171,Operator can stake vault in 2 different DSS with high slash percentages and DoS one of the DSS,,Seemingly OOS. QA at best,Unsatisfactory,,31
+validation-194,The user can call the registerOperatorToDSS() function when the contract is paused by governance,,Low QA and insufficient proof on the impact,Unsatisfactory,,33
+validation-193,The user will lose their funds if they try to withdraw shares > maxRedeem,,It's a needed check catering to slashing that has occurred,Unsatisfactory,,34
+validation-197,MIN_STAKE_UPDATE_DELAY for staking a vault may disincentivize users to stake,validation-277,Partial credit should be given as it does not address the impact of dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,35
+validation-110,No specific support for certain ERC20 tokens,,Commonly known issue on blocklisted,Unsatisfactory,,35
+validation-73,Malicious DSS can't be removed/penalized as there's no way to do that.,,DSS should be trusted,Unsatisfactory,,36
+validation-356,"not zero implementation will revert  in ""validateVaultConfigs""",,"(implementation != address(0) && !isVaultImplAllowlisted(self, implementation)) isn't meant catering to address(0) check",Unsatisfactory,,37
+validation-108,Tokens that revert on transfers to address(0),,M-4 from Renascence Labs (Core),Unsatisfactory,,38
+validation-169,Incorrect checking for gasLeft when calling the hooks,,Unneeded for an already inflated gasleft(),Unsatisfactory,,39
+validation-41,Fee-on-transfer tokens are un-slashable ,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,42
+validation-174,Jailing does not work for all the listed cases which is a deviation from the spec,,Seemingly OOS. QA at best,Unsatisfactory,,44
+validation-157, Missing Existence Check in `getNodeOwner` Function,,Low QA,Unsatisfactory,,45
+validation-55,High Slippage Due To Delay Between Withdrawl Request And Withdrawl,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,45
+validation-156,Incorrect return value in *getNextWithdrawNonce()*,,It's post incremented,Unsatisfactory,,47
+validation-144,"validateWithdrawalCredentials function always be dosed, whenever called after validateSnapshotProofs.",,Insufficeinet proof alleging the claim,Unsatisfactory,,47
+validation-192,"An attacker can register a DSS and set a maxSlashablePercentageWad that does not belong to him, change the maxSlashablePercentageWad of an existing DSS, to stake/unstake vault any DSS, register any operator address as a DSS, unregister an address from a DSS, impose the veto committee to cancel a queued slashing",,DSS should be trusted,Unsatisfactory,,48
+validation-166,Stale data snapshot present when snapshot starts:: making expired snapshot not detected when expired,,Insufficeinet proof alleging the claim,Unsatisfactory,,48
+validation-42,Slashing is Impossible ,,M-4 from Renascence Labs (Core),Unsatisfactory,,49
+validation-96,Operator Can Be Registered Multiple Times to the Same DSS,,Low QA on extended checks,Unsatisfactory,,51
+validation-284,non empty proof is required in the verifyInclusionKeccak.,,Insufficient proof alleging the claim,Unsatisfactory,,52
+validation-72,DSS can't slash in the future if `maxSlashablePercentWad` was set to 1 initially(which means no slashing),,Readme: The max slashing percentageWad can be set once by the DSS.,Unsatisfactory,,52
+validation-40,Depositing And Minting Does Not Take Into Account Fee-On-Transfer Tokens,,Analyzer: [M-1] Contracts are vulnerable to fee-on-transfer accounting-related issues,Unsatisfactory,,53
+validation-99,Pause Functionality Bypass in Operator Registration,,Low QA and insufficient proof on the impact,Unsatisfactory,,54
+validation-115,SlashHandling can get slashed by anyone leading to loss of funds,,It's msg.sender linked,Unsatisfactory,,55
+validation-172,Veto committee can slash anytime not necessarily during `VETO_WINDOW` which should not be the case,, SLASHING VETO COMMITTEE is trusted,Unsatisfactory,,57
+validation-185,DSS cannot actually specify 1 as the number for 0% slashing which is not the intended behavior,,Readme: The max slashing percentageWad can be set once by the DSS.,Unsatisfactory,,58
+validation-121,Withdrawal delay enforcement can be bypassed in `finishWithdrawal`,,Incorrect assumption on the intended slashing logic,Unsatisfactory,,60
+validation-54,Should Skip Instead Of Revert If Balance Is Already Proven,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,62
+validation-97,Incorrect Handling of Edge Case in Operator Registration,,Low QA on extended checks,Unsatisfactory,,63
+validation-31,Unsafe Casting leads to data loss or incorrect behavior,,Indequate elaboration,Unsatisfactory,,67
+validation-6,Insufficient Funds for Slashing Due to Time Delay Could Render Slashing Mechanism Ineffective,validation-349,Partial credit as it addresses a lesser impact of slash dodging through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/main/src/entities/SlasherLib.sol#L129,68
+validation-26,Absence of Slashing Cooldown Enforcement Due to Unused `nextSlashableTimestamp` Mapping,,This is a library contract. It will be updated elsewhere when needed,Unsatisfactory,,71
+validation-161,Lack of Slippage tolerance while redeeming their assets from the vault ,,This will interfere with the slashing mechanism. The protocol team should be aware of this limitation,Unsatisfactory,,73
+validation-32,Lack of Beacon State Root Validation Allows Acceptance of Outdated or Manipulated Proofs,,Insufficient proof alleging the claim,Unsatisfactory,,76
+validation-28,Premature DSS Removal in `unregisterOperatorFromDSS` Function Potentially Breaks Hook Functionality,,Intended design,Unsatisfactory,,83
+validation-7,Incorrect `Pause/Unpause` logic in pauser contract leading to unintended state changes which contradicts the `ReadMe`,,Commonly known issue. Intended design,Unsatisfactory,,84
+validation-170,User can request update of the vault stake and then unregister before finalization,validation-277,Dodging registration with DSS through timing manipulation,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Core.sol#L146-L153,85
+validation-147, Front-Running users to finish redeem on their behalf can lead to loss of funds for them,,It's just a commented misnomer. state.validateQueuedWithdrawal(withdrawalKey) has it taken care of,Unsatisfactory,,85
+validation-75," Veto Committee Can Cancel Slashing Requests Beyond the Designated Veto Window, Which Can Be Abused To Protect Certain Users From Being Slashed.",, SLASHING VETO COMMITTEE is trusted,Unsatisfactory,,85
+validation-289,Invalid Time Validation due to strict inequality symbol,,This will readily make the function revert,Unsatisfactory,,99
+validation-74,Title DSS will always slash operators if the slashing percent is set to 1,,Readme: The max slashing percentageWad can be set once by the DSS.,Unsatisfactory,,101
+validation-21,WETH compatibility issue on Blast chain,validation-322,Yield loss on Blast (Similar issue),Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/Vault.sol#L118,102
+validation-152,`finishReddem` open doors for exploitation of Slashed Withdrawals,,It's just a commented misnomer. state.validateQueuedWithdrawal(withdrawalKey) has it taken care of,Unsatisfactory,,105
+validation-20,Protocol could be tricked by some tokens stemming from the fact that rebasing/FOT tokens are not handled correctly,validation-155,Ongoing issue with stETH transfer,Satisfactory,https://github.com/code-423n4/2024-07-karak/blob/f5e52fdcb4c20c4318d532a9f08f7876e9afb321/src/SlashingHandler.sol#L56,123
+validation-61,Immediate DSS unregistration could allow operators evade slashing,,Seemingly OOS. QA at best,Unsatisfactory,,131
+validation-293,Outdated(Expired) Merkle proof generated can be reused to validate a balanceProof and balanceContainer,,Devoid of coded POC supporting the claim,Unsatisfactory,,135
+validation-29,First Minter Can Steal Others Assets,,_decimalsOffset() and _useVirtualShares() in solady 4626 will make the inflation attack infeasible,Unsatisfactory,,141
+validation-181,Unrestricted minting vulnerability in ERC4626 Vault Implementation,,Intended design commensurate with the amount of asset transferred from the caller,Unsatisfactory,,144
+validation-5,Incorrect balance extraction in `validateBalance` due to error in bit shift operation,,Indequate proof of impact alleging the flaw on an intended design,Unsatisfactory,,164
+validation-4,`merkleizeSha256` won't work as expected,,Low QA on validation check on a lib function,Unsatisfactory,,201
