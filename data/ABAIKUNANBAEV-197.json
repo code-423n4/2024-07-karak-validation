@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "MIN_STAKE_UPDATE_DELAY for staking a vault may disincentivize users to stake",
   "issueId": 197,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/197"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/197",
+  "validatedIssueId": 79,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/79"
 }
