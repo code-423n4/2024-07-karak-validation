@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "operator customizes the slashStore address, it results in slashAssets always reverting",
   "issueId": 146,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/146"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/146",
+  "validatedIssueId": 82,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/82"
 }
