@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Operator can bypass MIN_STAKE_UPDATE_DELAY by spamming requestUpdateVaultStakeInDSS()",
   "issueId": 60,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/60"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/60",
+  "validatedIssueId": 89,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/89"
 }
