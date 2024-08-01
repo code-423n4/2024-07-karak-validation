@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Operator can become  one of the trusted roles",
   "issueId": 117,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/117"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/117",
+  "validatedIssueId": 85,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/85"
 }
