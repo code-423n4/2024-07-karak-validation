@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "A DSS cannot stop staking of a vault that doesn't meet its conditions",
   "issueId": 278,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/278"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/278",
+  "validatedIssueId": 70,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/70"
 }
