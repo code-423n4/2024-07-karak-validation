@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Operators can finalize their vault staking to DSS even after unregistering from them due to missing registered check for operator on DSS",
   "issueId": 347,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/347"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/347",
+  "validatedIssueId": 62,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/62"
 }
