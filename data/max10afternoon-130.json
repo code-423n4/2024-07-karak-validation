@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "It is possible to bypass validateWithdrawalCredentials",
   "issueId": 130,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/130"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/130",
+  "validatedIssueId": 58,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/58"
 }
