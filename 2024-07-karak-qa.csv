@@ -1,0 +1,40 @@
+issue,title,validator comment,status,size,Best
+validation-180,QA Report,Only 2 links,Unsatisfactory,3,✰✰✰
+validation-27,QA Report,Only 2 headers,Unsatisfactory,4,✰✰✰
+validation-176,Gas Optimizations,No gas pool,Unsatisfactory,16,✰✰✰
+validation-175,QA Report,1 Low,Unsatisfactory,22,✰✰✰
+validation-33,QA Report,1 Low,Unsatisfactory,26,✰✰✰
+validation-245,QA Report,1 Low,Unsatisfactory,27,✰✰✰
+validation-334,QA Report,3 Lows (Poor format),Unsatisfactory,34,✰✰✰
+validation-145,QA Report,1 Low,Unsatisfactory,39,✰✰✰
+validation-24,QA Report,1 Low,Unsatisfactory,40,✰✰✰
+validation-92,QA Report,5 Lows (All on NatSpec Mismatch),Unsatisfactory,46,✰✰✰
+validation-361,QA Report,3 Lows,Unsatisfactory,49,✰✰✰
+validation-362,QA Report,1 NC,Unsatisfactory,55,✰✰✰
+validation-206,QA Report,1 Low,Unsatisfactory,58,✰✰✰
+validation-67,QA Report,1 Low,Unsatisfactory,58,✰✰✰
+validation-52,Gas Optimizations,No gas pool,Unsatisfactory,75,✰✰✰
+validation-233,QA Report,2 Lows,Unsatisfactory,76,✰✰✰
+validation-48,QA Report,FP: 1; 3 NC's/Generic,Unsatisfactory,76,✰✰✰
+validation-2,QA Report,1 Low (More like an Analysis report),Unsatisfactory,81,✰✰✰
+validation-95,Gas Optimizations,No gas pool,Unsatisfactory,95,✰✰✰
+validation-211,QA Report,2 Generic's,Unsatisfactory,101,✰✰✰
+validation-329,QA Report,NC: 2; 3 Lows,Unsatisfactory,112,✰✰✰
+validation-116,Gas Optimizations,No gas pool,Unsatisfactory,115,✰✰✰
+validation-357,Gas Optimizations,No gas pool,Unsatisfactory,116,✰✰✰
+validation-320,QA Report,FP: 3; 2 Lows,Unsatisfactory,117,✰✰✰
+findings-45,QA Report,FP: 2; 4 Lows,Unsatisfactory,131,✰✰✰
+validation-280,Gas Optimizations,No gas pool,Unsatisfactory,134,✰✰✰
+validation-313,QA Report,4 Lows,Unsatisfactory,170,✰✰✰
+findings-14,QA Report,"Past Audit: 1, 2; FP: 3, 4; 1 Low",Unsatisfactory,188,✰✰✰
+findings-2,Gas Optimizations,No gas pool,Unsatisfactory,202,✰✰✰
+validation-148,QA Report,Generic: 1; 2 Lows,Unsatisfactory,284,✰✰✰
+validation-177,QA Report,Gas: 7; 11 Lows,Satisfactory,413,✰✰✰
+validation-135,QA Report,"NC: 1, 2, 10; FP: 5; Generic: 7, 9; 4 Lows",Unsatisfactory,541,✰✰✰
+findings-22,QA Report,"Analyzer: 1; Past Audit: 2; FP: 6; 12 Lows (Less Unique, e.g. multiple findings hovering on pausations, EIP4626 compliances)",Satisfactory,1100,✰✰✰
+findings-13,QA Report,"FP: 2, 8, 11; Generic: 3, 5, 6, 7, 9, 10, 12; 2 Lows",Unsatisfactory,3039,✰✰✰
+validation-265,Gas Optimizations,No gas pool,Unsatisfactory,3620,✰✰✰
+validation-282,QA Report,"Generic: 2, 3, 6, 10, 13, 14, 15, 16, 20, 22, 23, 24, 26, 28, 29, 30, 31, 32; FP: 4, 5, 7, 8, 11, 25, 34, 37, 38; NC: 9, 12, 27, 33, 35; Analyzer: 17, 18, 19, 21; Only 1 Low (Too much noise)",Unsatisfactory,4830,✰✰✰
+validation-264,QA Report,"Analyzer: 1, 11, 14; Generic: 2, 3, 5, 6, 7, 8, 9, 10, 12, 16, 17, 18; FP: 13, 15 (Too much noise)",Unsatisfactory,9777,✰✰✰
+validation-104,QA Report,"Analyzer: 1; FP: 2, 3; NC: 5; 4 Lows",Unsatisfactory,107,✰✰✰
+validation-64,QA Report,"FP: 7, 12, 14; 12 Lows (Ambiguous prone)",Satisfactory,1041,✰✰✰
