@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Operator can skew the state of the `Core` contract and be considered as staked for a DSS, even though the operator is not registered with that DSS on the `Core`.",
   "issueId": 277,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/277"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/277",
+  "validatedIssueId": 54,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/54"
 }
