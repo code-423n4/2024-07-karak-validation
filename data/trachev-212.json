@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "NativeVault's `MANAGER_ROLE` is untrusted and allows malicious operators to steal all funds from the native nodes",
   "issueId": 212,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/212"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/212",
+  "validatedIssueId": 78,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/78"
 }
