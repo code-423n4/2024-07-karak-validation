@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "DSS can deposit assets into the vault by oneself, which can lead to vault users losing more slashed assets",
   "issueId": 216,
-  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/216"
+  "issueUrl": "https://github.com/code-423n4/2024-07-karak-validation/issues/216",
+  "validatedIssueId": 76,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-07-karak-findings/issues/76"
 }
